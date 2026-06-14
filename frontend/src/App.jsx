@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 import InvestmentForm from './components/InvestmentForm'
 import ResultPanel from './components/ResultPanel'
 import StatusBar from './components/StatusBar'
+import ZerodhaCallback from './components/ZerodhaCallback'
 import './App.css'
+
+// In production (Vercel), API is same-origin. In dev, Vite proxies /api to localhost:8000
+const API_BASE = ''
 
 function App() {
   const [health, setHealth] = useState(null)
@@ -14,9 +18,15 @@ function App() {
     fetchHealth()
   }, [])
 
+  // Simple path-based routing for Zerodha callback
+  const path = window.location.pathname
+  if (path === '/zerodha/callback') {
+    return <ZerodhaCallback />
+  }
+
   async function fetchHealth() {
     try {
-      const res = await fetch('/api/health')
+      const res = await fetch(`${API_BASE}/api/health`)
       const data = await res.json()
       setHealth(data)
     } catch {
@@ -30,7 +40,7 @@ function App() {
     setResult(null)
 
     try {
-      const res = await fetch('/api/invest', {
+      const res = await fetch(`${API_BASE}/api/invest`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
