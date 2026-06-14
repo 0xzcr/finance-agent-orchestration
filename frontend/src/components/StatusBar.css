@@ -1,0 +1,51 @@
+.status-bar {
+  padding: 0.6rem 2rem;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-connected {
+  background: var(--bg-secondary);
+}
+
+.status-disconnected {
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--danger);
+}
+
+.status-items {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.green {
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.status-dot.yellow {
+  background: var(--warning);
+  box-shadow: 0 0 6px var(--warning);
+}
+
+.status-dot.red {
+  background: var(--danger);
+  box-shadow: 0 0 6px var(--danger);
+}

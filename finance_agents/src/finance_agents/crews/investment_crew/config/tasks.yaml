@@ -1,0 +1,114 @@
+market_research_task:
+  description: >
+    Conduct comprehensive market research for investment opportunities.
+
+    Your research must include:
+    1. Check today's top gaining and losing stocks to identify momentum
+    2. Gather latest market news and sentiment, focusing on: {focus_area}
+    3. Look up real-time quotes for at least 5 relevant stocks in the focus area
+    4. Get company overviews for the most promising 3-4 companies
+    5. Identify key global trends affecting the market right now
+
+    Deliver a structured research report with data-backed findings.
+    Include specific numbers: prices, percentage changes, sentiment scores.
+  expected_output: >
+    A detailed market research report containing:
+    - Current market overview (top movers, overall sentiment)
+    - 3-5 specific stock opportunities with current prices and fundamentals
+    - Key global trends and news affecting the focus area
+    - Sentiment analysis summary
+    All data should be current and include specific figures.
+  agent: market_researcher
+
+strategy_planning_task:
+  description: >
+    Based on the market research provided, develop a comprehensive
+    investment strategy.
+
+    Parameters:
+    - Risk Tolerance: {risk_tolerance}
+    - Time Horizon: {time_horizon}
+    - Investment Amount: ${investment_amount}
+    - Focus Area: {focus_area}
+
+    Your strategy must include:
+    1. Investment thesis — why now is the right time
+    2. Sector allocation strategy with percentages
+    3. Specific stock picks with rationale for each
+    4. Entry strategy (dollar-cost averaging vs lump sum)
+    5. Suggested position sizes as percentage of total portfolio
+    6. Target price levels for each pick
+    7. Exit criteria — when to sell
+
+    Be specific and actionable. No vague recommendations.
+  expected_output: >
+    A detailed investment strategy document containing:
+    - Clear investment thesis
+    - Sector allocation breakdown (percentages)
+    - 4-6 specific stock picks with entry prices and rationale
+    - Position sizing recommendations
+    - Entry and exit strategy
+    - Expected return timeline
+  agent: strategy_planner
+
+risk_assessment_task:
+  description: >
+    Critically evaluate the proposed investment strategy for risks.
+
+    Perform the following analysis:
+    1. Assess each stock pick for volatility risk (check current prices
+       relative to 52-week highs/lows)
+    2. Evaluate sector concentration risk
+    3. Identify correlation between picks (are they all exposed to
+       the same macro risk?)
+    4. Calculate potential maximum drawdown scenario
+    5. Assess current market conditions for systemic risk
+    6. Evaluate if the strategy matches a {risk_tolerance} risk profile
+    7. Suggest specific hedging strategies or protective measures
+
+    Be brutally honest. Your job is to protect capital, not to be optimistic.
+  expected_output: >
+    A risk assessment report containing:
+    - Risk score for overall strategy (1-10, where 10 is highest risk)
+    - Individual risk assessment per stock pick
+    - Concentration and correlation analysis
+    - Worst-case scenario with estimated max drawdown percentage
+    - Specific hedging recommendations
+    - GO/NO-GO recommendation with conditions
+    - Adjustments needed to align with stated risk tolerance
+  agent: risk_analyst
+
+investment_recommendation_task:
+  description: >
+    Synthesize all previous analysis into a final investment recommendation.
+
+    Using the market research, strategy, and risk assessment, create a
+    final actionable investment plan for ${investment_amount}.
+
+    Your recommendation must include:
+    1. Executive summary (2-3 sentences on overall recommendation)
+    2. Final portfolio allocation table with:
+       - Ticker symbol
+       - Company name
+       - Allocation percentage
+       - Dollar amount to invest
+       - Current price
+       - Target price (12-month)
+       - Stop-loss level
+    3. Implementation timeline (when to buy what)
+    4. Monthly monitoring checklist
+    5. Rebalancing triggers
+    6. Risk disclaimer
+
+    Format the output as a professional investment memo that could be
+    shared with a client.
+  expected_output: >
+    A professional investment recommendation memo containing:
+    - Executive summary
+    - Portfolio allocation table with specific tickers, amounts, and targets
+    - Step-by-step implementation plan
+    - Monitoring and rebalancing guidelines
+    - Clear risk disclaimer
+    The memo should be ready to act upon immediately.
+  agent: portfolio_advisor
+  output_file: output/investment_recommendation.md
