@@ -5,8 +5,9 @@ import StatusBar from './components/StatusBar'
 import ZerodhaCallback from './components/ZerodhaCallback'
 import './App.css'
 
-// In production (Vercel), API is same-origin. In dev, Vite proxies /api to localhost:8000
-const API_BASE = ''
+// In production, VITE_API_URL points to the Railway/Render backend.
+// In dev, Vite proxies /api to localhost:8000 so we use empty string.
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 function App() {
   const [health, setHealth] = useState(null)
