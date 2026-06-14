@@ -3,6 +3,7 @@ services:
     name: finance-agent-backend
     runtime: docker
     dockerfilePath: ./Dockerfile
+    plan: starter
     envVars:
       - key: CEREBRAS_API_KEY
         sync: false
@@ -15,5 +16,7 @@ services:
       - key: KITE_ACCESS_TOKEN
         sync: false
       - key: ALPHA_VANTAGE_API_KEY
+        sync: false
+      - key: FRONTEND_URL
         sync: false
     healthCheckPath: /api/health
